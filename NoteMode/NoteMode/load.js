@@ -11,7 +11,11 @@ var loadingScreen = document.getElementsByClassName("loadingScreen")[0];
 function load() {
     x += 1;
     c.fillRect(x, 0, 1, 100);
-    if (x > 600) {loadingScreen.style.display = "none"};
+    if (x > 600) {
+        loadingScreen.style.opacity = 0;
+        loadingScreen.style.animationPlayState = "running";
+        setTimeout(function () {loadingScreen.style.display = "none";}, 500);
+    }
     if (x > 100) {speed = Math.random() * 40};
     if (x > 250) {speed = Math.random() * 20};
     if (x > 300) {speed = Math.random() * 50};
