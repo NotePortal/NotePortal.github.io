@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>NoteMode</title>
+    <link rel="icon" href="icon.png">
+    <style>
+        #listToggle {
+            border: none;
+            outline: none;
+            background: #00ffff;
+        }
+        body {
+            font-family: arial;
+            background: #dadada;
+            margin: 0px;
+            overflow: hidden;
+            font-weight:lighter;
+            }
+        .edit button {
+            background: transparent;
+            outline: none;
+            font-size: 20px;
+            border: none;
+            border-bottom: 3px solid #00ffff;
+            /*border-radius: 10px;*/
+            transition: 0.2s border;
+            cursor: pointer;
+            margin: 50px;
+            position: absolute;
+            transition: 0.2s transform;
+        }
+        .edit button:hover {
+            border-bottom: 1px solid #00ffff;
+            transform: scale(1.4);
+            z-index: 10000;
+        }
+        #add {
+            border: 3px solid #00ffff;
+            /*border-radius: 10px;*/
+            color: black;
+            transition: 0.2s;
+            cursor: default;
+            border-radius: 100px;
+            background: transparent;
+            position: absolute;
+        }
+        #add:hover {
+            background: #00ffff;
+            color: white;
+            transform: scaleX(1.4) scaleY(1.4) rotate(180deg);
+            z-index: 0;
+        }
+        .edit {
+            background: linear-gradient(90deg,white, transparent);
+            height: 100px;
+            position: absolute;
+            width: 800px;
+        }
+        .addedContent h1 {
+            font-size: 50px;
+        }
+        .addedContent {
+            overflow-y: scroll;
+            border: 3px solid gray;
+            overflow-x: hidden;
+            position: absolute;
+            margin: 100px 0px;
+            height: 800px;
+            width: 800px;
+            background: white;
+        }
+        #data {
+            width: 300px;
+            margin: 100px;
+        }
+        ::-webkit-scrollbar {
+            background: #ffffff;
+            width: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #00ffff;
+        }
+        input[type="text" i]{
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid gray;
+            outline: none;
+            color: black;
+            transition: 0.3s;
+            transform: skew(180deg);
+        }
+        input[type="text" i]:focus {
+            border-bottom: 2px solid #00ffff;
+            transform: skew(0deg);
+        }
+        .sidebar {
+            margin: 100px 800px;
+            position: absolute;
+        }
+        #dataPlaceholder {color: gray;}
+        #color {
+            -webkit-appearance: none;
+            background: gray;
+            outline: none;
+            border: none;
+            position: absolute;
+            margin: -70px 100px;
+            width: 50px;
+            height: 50px;
+            transition: 0.2s;
+        }
+        #color:hover {
+            transform: scale(1.3);
+        }
+        .texttypes input {
+            -webkit-appearance: none;
+            appearance: none;
+            border: 1px solid gray;
+            width: 20px;
+            height: 20px;
+            outline: none;
+            transition: 0.2s;
+            background-color: gray;
+            background-repeat: no-repeat;
+            image-rendering: pixelated;
+            position: absolute;
+        }
+        .texttypes input:checked {
+            border-color: #00ffff;
+            transform: scale(1.5);
+        }
+        .texttypes input:hover {
+            transform: scale(2);
+        }
+        .texttypes input:disabled {
+            cursor: not-allowed;
+        }
+        .texttypes {
+            position: absolute;
+            margin: 0px 0px;
+        }
+        #link {
+            position: absolute;
+            margin: 100px;
+            width: 300px;
+            display: none;
+        }
+        .types input {
+            -webkit-appearance: none;
+            background-repeat: no-repeat;
+            appearance: none;
+            width: 45px;
+            height: 26px;
+            outline: none;
+            transition: 0.2s;
+            image-rendering: pixelated;
+            border: 1px solid gray;
+        }
+        .types input:checked {
+            border-color: #00ffff;
+        }
+        .types input:hover {
+            transform: scale(1.4);
+        }
+        .addedContent a:hover {
+            text-decoration: none;
+        }
+        .editObjects {
+            position: absolute;
+            margin: 200px 100px;
+        }
+        .editObjects button {
+            background: gray;
+            outline: none;
+            border: 3px solid gray;
+            border-radius: 100px;
+        }
+        .editObjects button:hover {
+            background: #00ffff;
+            border-color: #00ffff;
+            color: white;
+        }
+        #googleLink {
+            text-decoration: none;
+            color: #004444;
+            position: absolute;
+            margin: 100px 100px;
+            display: none;
+        }
+        #googleLink:hover {
+            text-decoration: underline;
+        }
+        @media screen and (max-width: 768px) {
+            .addedContent  {
+                height: 350px;
+                width: 350px;
+            }
+            #data {
+                width: 200px;
+            }
+            .editObjects {
+                margin: 100px 50px;
+            }
+            .sidebar {
+                margin: 400px 0px;
+            }
+            .addedContent h1 {
+                font-size: 40px;
+            }
+            #link {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="edit">
+        <button id="add" onclick="add()">+</button>
+        <div class="types">
+            <input type="radio" name="type" style="background: url(list.png) no-repeat 1px;">
+            <input type="radio" name="type" checked style="background: url(header.png) no-repeat -1px;">
+            <input type="radio" name="type" style="background: url(aling-left.png) no-repeat;">
+            <input type="radio" name="type" style="background: url(picture.png) no-repeat 3px;">
+            <input type="radio" name="type" style="background: url(link.png) no-repeat -2px;">
+        </div>
+    </div>
+    <div class="sidebar">
+        <div style="margin: 75px 100px; position: absolute;"><span>Enter your </span><span id="dataPlaceholder">text</span><span> here.</span></div>
+        <input id="data" type="text" spellcheck="false">
+        <input type="text" id="link" placeholder="Copy and paste or type a link here." spellcheck="false">
+        <a href="https://www.google.com/imghp?hl=en" target="null" id="googleLink">Search from Google</a>
+        <input type="color" id="color" value="#00ffff">
+        <div class="texttypes">
+        <input type="radio" name="textmargin" style="background: url(aling-left.png); margin: 0px 100px;" checked>
+        <input type="radio" name="textmargin" style="background: url(aling-center.png); background-position-x: -1px; margin: 0px 135px;">
+        <input type="radio" name="textmargin" style="background: url(aling-right.png); margin: 0px 170px;">
+        <input type="checkbox" name="textWeight" style="background: url(bold.png); background-position: -1px; margin: 35px 100px;">
+        <input type="checkbox" name="textWeight" style="background: url(italic.png); background-position: -1px; margin: 35px 135px;">
+        <input type="checkbox" name="textWeight" style="background: url(underline.png); background-position: -1px; margin: 35px 170px;">
+        </div>
+        <!--<textarea id="finalproduct"></textarea>-->
+        <div class="editObjects" style="display: none;">
+            <span>One element selected.</span>
+            <br>
+            <button onclick="editElement(false)">Save changes</button>
+            <button onclick="editElement(true)" style="background: red; border-color: red;">Delete</button>
+        </div>
+    </div>
+    <div class="addedContent"></div>
+    <script src="main.js"></script>
+</body>
+</html>
