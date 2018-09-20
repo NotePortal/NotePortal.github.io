@@ -213,6 +213,35 @@
                 width: 200px;
             }
         }
+        .loadingScreen {
+            z-index: 20000;
+            position: absolute;
+            display: block;
+            background: white;
+            width: 5000px;
+            height: 5000px;
+            transition: 0.5s;
+            animation-name: loadingScreenExit;
+            animation-duration: 1s;
+            animation-iteration-count: 1;
+            animation-play-state: running;
+            transform-origin: 555px 250px;
+        }
+        .loadingScreen p  {
+            font-size: 50px;
+            position: absolute;
+            left: 555px;
+            top: 250px;
+        }
+        .loadingScreen strong {
+            color: blueviolet;
+        }
+        .loadingScreen canvas {
+            border: 1px solid blueviolet;
+            position: absolute;
+            left: 600px;
+            top: 400px;
+        }
     </style>
 </head>
 <body>
@@ -249,6 +278,11 @@
         </div>
     </div>
     <div class="addedContent"></div>
+    <div class="loadingScreen">
+        <p id="text">Jumping to a <strong id="name">NotePortal</strong>...</p>
+        <canvas id="c"></canvas>
+        <script src="load.js"></script>
+    </div>
     <script src="main.js"></script>
 </body>
 </html>

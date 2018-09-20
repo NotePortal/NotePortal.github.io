@@ -4,32 +4,26 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>NotePortal - Where to jump?</title>
+    <link rel="icon" href="logo.png">
     <style>
-        body {margin: 0px; overflow-x: hidden;}
-        .headers h1 {
+        body {margin: 0px; overflow: hidden;}
+        .headers p {
             font-family: arial;
             font-size: 50px;
-            color: white;
+            color: black;
+            margin: 100px;
+            position: absolute;
         }
         .headers {
             width: 2000px;
             height: 200px;
-            background: blueviolet;
-            animation-name: headersBackground;
-            animation-duration: 30s;
-            animation-iteration-count: infinite;
-            animation-play-state: running;
-        }
-        @keyframes headersBackground {
-            0% {background: blueviolet;}
-            50% {background: aqua;}
-            100% {background: blueviolet;}
         }
         .links a{
             color: black;
             text-decoration: none;
             font-family: arial;
             border: 3px solid transparent;
+            border-left-color: aqua;
             position: absolute;
             transition: 0.2s;
             font-size: 30px;
@@ -39,14 +33,23 @@
             animation-iteration-count: 1;
             animation-delay: 0.3s;
             animation-play-state: running;
-            margin-top: 100px;
+            margin-top: 200px;
         }
         .links a:hover {
-            border: 3px solid aqua;
+            border-color:aqua;
             border-top-right-radius: 10px;
             text-shadow: #0000004d 2px 2px;
             box-shadow: #0000004d 5px 5px;
             transform: scale(1.1);
+        }
+        #exammode {
+            border-left-color: yellow;
+        }
+        #exammode:hover {
+            border-color: yellow;
+        }
+        .links a:hover .links {
+            background: aqua;
         }
         @keyframes links {
             0% {transform: scale(0.5);}
@@ -59,15 +62,52 @@
             z-index: 1;
             margin: 100px;
         }
+        #portals {
+            color: gray;
+            font-family: arial;
+            font-size: 40px;
+            margin: 200px 100px;
+            position: absolute;
+        }
+        #name {
+            color: #B200FF;
+            border-bottom: 1px solid gray;
+            margin: 0px;
+            font-size: 25px;
+            font-family: arial;
+            margin: 0px 50px;
+        }
     </style>
 </head>
 <body>
     <div class="headers">
-        <h1>Welcome!</h1>
-        <h1>Select one of the following portals.</h1>
+        <div>
+            <span>...</span>
+            <img src="logo.png" style="width: 25px;position: absolute;"/>
+            <strong id="name">NotePortal</strong>
+        </div>
+        <p>Good <span id="time"></span>!</p>
+        <p id="portals">Portals:</p>
     </div>
     <div class="links">
-        <a href="loading.html" style="margin-left: 300px;">NoteMode</a>
+        <a href="./NoteMode/notemode.html" style="margin-left: 300px;">NoteMode</a>
+        <a href="./ExamMode/exammode.html" style="margin-left: 600px;" id="exammode">ExamMode</a>
     </div>
+    <script>
+        var time = document.getElementById("time")
+        var d = new Date();
+        var hours = d.getHours();
+
+        function timeSystem() {
+            hours = d.getHours();
+            if (hours > 0 - 1) {time.innerHTML = "Night"}
+            if (hours > 6 - 1) {time.innerHTML = "morning"}
+            if (hours > 12 - 1) {time.innerHTML = "afternoon"}
+            if (hours > 17 - 1) {time.innerHTML = "evening"}
+            if (hours > 22 - 1) {time.innerHTML = "Night"}
+            setTimeout(timeSystem, 60000);
+        }
+        timeSystem();
+    </script>
 </body>
 </html>
