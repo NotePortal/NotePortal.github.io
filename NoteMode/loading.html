@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>NotePortal - Jumping</title>
+    <style>
+        body {font-family: arial;}
+        #name {
+            color: blueviolet;
+        }
+        #text {
+            color: gray;
+            font-size: 60px;
+            position: absolute;
+            left: 400px;
+            top: 250px;
+        }
+        #c {
+            border: 1px solid blueviolet;
+            background: white;
+            position: absolute;
+            left: 510px;
+            top: 400px;
+        }
+    </style>
+</head>
+<body>
+    <p id="text">Jumping to a <strong id="name">NotePortal</strong>...</p>
+    <canvas id="c"></canvas>
+    <script>
+        var c = document.getElementById("c");
+
+        c.width= 400;
+        c.height = 20;
+
+        c = c.getContext("2d");
+        var x = -10;
+        var speed = 1;
+        c.fillStyle = "blueviolet";
+        function load() {
+            x += 1;
+            c.fillRect(x, 0, 1, 100);
+            if (x > 600) {window.location = "./NoteMode/notemode.html"}
+            if (x > 250) {speed = 20};
+            if (x > 300) {speed = 50};
+            if (x > 325) {speed = 25};
+            if (x > 350) {speed = 10};
+            if (x > 400) {speed = 5};
+            setTimeout(load, speed);
+        }
+        setTimeout(load, 500);
+    </script>
+    </div>
+</body>
+</html>
