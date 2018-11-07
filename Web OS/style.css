@@ -1,0 +1,40 @@
+body {
+    margin: 0px;
+    overflow: hidden;
+}
+#taskbar {
+    background: #000000cc;
+    width: 100%;
+    height: 50px;
+}
+#taskbar button {
+    width: 45px;
+    height: 45px;
+    background: #80808000;
+    color: white;
+    outline: none;
+    border: 2px solid #242424;
+}
+#windows iframe {
+    width: 100%;
+    height: 53em;;
+    position: absolute;
+    background: white;
+    border: none;
+}
+#windows p {
+    font-family: arial;
+    color: white;
+}
+#windows div {
+    background: linear-gradient(90deg, #4e4e4e, #5a5a5a);
+    width: 100%;
+    height: 900px;
+    box-shadow: #0000006b 10px;
+    position: absolute;
+}
+#windows button {
+    background: red;
+    color: white;
+    border: none;
+}
