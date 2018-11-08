@@ -1,0 +1,45 @@
+#conversation {
+    width: 450px;
+    height: 800px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+
+
+.user {
+    background: red;
+    border-radius: 20px;
+    border-top-right-radius: 0px;
+    border: 10px solid transparent;
+    margin-left: 75%;
+    color: white;
+    font-family: arial;
+    max-width: 100px;
+}
+
+.david {
+    background: gray;
+    border-radius: 20px;
+    border-top-left-radius: 0px;
+    border: 10px solid transparent;
+    margin-left: 0%;
+    color: white;
+    font-family: arial;
+    max-width: 100px;
+}
+
+#message {
+    border: 1px solid gray;
+    border-radius: 20px;
+    outline: none;
+    width: 200px;
+    height: 20px;
+}
+
+button {
+    background: red;
+    border: 5px solid transparent;
+    border-radius: 20px;
+    outline: none;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>File manager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            margin: 0px;
+            font-family: arial;
+        }
+        #filePath {
+            border: none;
+            border-bottom: 2px solid gray;
+            outline: none;
+            transition: 0.3s;
+            margin: 25px 10px;
+            width: 1000px;
+        }
+        #filePath:focus {
+            border-bottom-color: aqua;
+        }
+        #sidebar {
+            border: 1px solid gray;
+            width: 200px;
+            position: absolute;
+            margin: 50px 10px;
+        }
+        #sidebar button {
+            border: none;
+            border-radius: 10px;
+            background: #b4b4b4;
+            color: black;
+            outline: none;
+            transition: 0.3s;
+        }
+        #sidebar button:hover {
+            background: aqua;
+            color: white;
+        }
+        #display {
+            margin: 0px 400px;
+        }
+        #display a {
+            font-family: arial;
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+   <input id="filePath"></input><br>
+   <div id="sidebar">
+       <button onclick="changePath('./images/');">Images</button>
+       <br>
+       <button onclick="changePath('./videos/');">Videos</button>
+       <br>
+       <button onclick="changePath('./programfiles/');">program files</button>
+   </div>
+   <div id="display"></div>
+   <script>
+       var filePath = document.getElementById("filePath");
+       var display = document.getElementById("display");
+       var displayStr = "";
+
+        var files = [
+            {path: "./images/", name: "background.png"},
+            {path: "./programfiles/", name: "CDM.html"},
+            {path: "./programfiles/", name: "david.html"},
+            {path: "./programfiles/", name: "main.js"},
+            {path: "./programfiles/", name: "style.css"},
+        ];
+        function read() {
+            display.innerHTML = "";
+            for (let i = 0; i < files.length; i++) {
+                if (files[i].path === filePath.value) {
+                    display.innerHTML += "<div><a href='"+files[i].path+files[i].name+"' target='blank' title='"+files[i].path+files[i].name+"'>"+files[i].name+"</a></div>";
+                }
+            }
+        }
+        function changePath(path) {
+            filePath.value = path;
+            read();
+        };
+   </script>
+</body>
+</html>
