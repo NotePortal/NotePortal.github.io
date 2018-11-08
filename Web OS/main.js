@@ -22,7 +22,11 @@ function move(el) {
     };
 }
 function closeApp(el) {
-    windows.removeChild(el);
+    var tag = el;
+    el.style.transition = "0.5s";
+    el.style.transform = "scale(0.7)";
+    setTimeout(function (){tag.style.transition = "0.1s";}, 100);
+    setTimeout(function (){windows.removeChild(tag)}, 200);
 }
 
 var clock = new Date();

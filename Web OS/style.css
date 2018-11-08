@@ -39,6 +39,7 @@ body {
     height: 900px;
     box-shadow: #0000006b 10px;
     position: absolute;
+    transition: 0.1s;
 }
 #windows button {
     position: absolute;
