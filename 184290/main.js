@@ -1,5 +1,4 @@
-navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia
-|| navigator.msGetUserMedia || navigator.oGetUserMedia;
+navigator.getUserMedia = navigator.getUserMedia;
 
 var video = document.querySelector("#video");
 var canvas = document.querySelector("#canvas");
